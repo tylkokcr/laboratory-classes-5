@@ -5,25 +5,24 @@
   </head>
   <body>
     <main>
-      <%- include('partials/navigation', { menuLinks: menuLinks, activeLinkPath:
-      activeLinkPath }); %>
+      <%- include('partials/navigation', { menuLinks: menuLinks, activeLinkPath: activeLinkPath }); %>
       <h1 class="heading">Products</h1>
+
       <% if (products?.length > 0) { %>
-      <ul>
-        <% products.forEach(product => { %>
-        <li>
-          Name: <%= product.name %>, Description: <%= product.description %>
-          <a href="/products/<%= product.name %>">Details</a>
-          <button onclick="deleteProduct('<%= product.name %>')">Delete</button>
-        </li>
-        <% }); %>
-      </ul>
+        <ul class="products">
+          <% products.forEach(product => { %>
+            <li>
+              <%- include('partials/card', { product: product }) %>
+            </li>
+          <% }); %>
+        </ul>
       <% } else { %>
-      <br />
-      <div>No products available.</div>
-      <% }%>
+        <br />
+        <div>No products available.</div>
+      <% } %>
     </main>
   </body>
+
   <script>
     function deleteProduct(name) {
       if (!confirm(`Are you sure you want to remove ${name}?`)) {

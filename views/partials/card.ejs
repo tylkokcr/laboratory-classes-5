@@ -1,0 +1,25 @@
+<div class="card">
+    <img 
+  class="card__image" 
+  alt="<%= product.name %>" 
+  src="https://placehold.co/600x400?text=Product"
+/>
+
+    
+    <h3 class="card__title"><%= product.name %></h3>
+    
+    <p class="card__description"><%= product.description %></p>
+    
+    <p class="card__price">
+      <% if (product.price !== undefined) { %>
+        $<%= Number(product.price).toFixed(2) %>
+      <% } else { %>
+        <em>Price not set</em>
+      <% } %>
+    </p>
+  
+    <form action="/products/<%= product.name %>?_method=DELETE" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+  
